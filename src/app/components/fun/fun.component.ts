@@ -102,16 +102,23 @@ export class FunComponent implements OnInit {
   }
 
   public onPlay(point: Intersection) {
-    this.position = this.position.play(point, this.toPlay);
+    const position = this.position.play(point, this.toPlay);
+    if (position == null) {
+      // an illegal move.
+      return;
+    }
+    this.position = position;
 
     const remaining = this.position.getIntersectionsByColor(this.toKill)
     if (remaining.length === 0) {
+      // all are captured
       setTimeout(() => {
         if (confirm('Well done ! - Play again ?')) {
           this.createChallenge();
         }
       });
     } else if (this.configuration.targetsRunAway === true) {
+      // stones should run away.
       setTimeout(() => this.tryEscape())
     }
   }
@@ -121,14 +128,19 @@ export class FunComponent implements OnInit {
     for (const intersection of intersections) {
       const { chain, liberties } = this.position.getChainAndLiberties(intersection);
 
+      // first group with exactly one liberty should play a move.
       if (liberties.length === 1) {
         const newPosition = this.position.play(liberties[0], this.toKill);
-        if (newPosition != null) {
-          this.position = newPosition;
-          this.keyPoints = this.findKeyPoints();
-          return;
+        if (newPosition == null) {
+          // it's an illegal move.
         }
+
+        // apply move, and update playable keypoints for human player.
+        this.position = newPosition;
+        this.keyPoints = this.findKeyPoints();
+        return;
       }
     }
   }
+}
 }
