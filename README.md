@@ -2,6 +2,9 @@
 
 BadukKids is an open source project to build a website. The goal of this website, is to teach very young children (age ~4 years old), the fundamental skills which are required to learn the game of go.
 
+![image](https://user-images.githubusercontent.com/20482760/105618956-bf1e5300-5ded-11eb-9041-0fa8889e5649.png)
+
+
 # Use the website
 
 An online version is deployed here: https://zbaduk.github.io/BadukKids/
