@@ -1,0 +1,54 @@
+@keyframes hide {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.keypoint {
+  animation-name: hide;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  /* animation-timing-function: linear; */
+}
+
+.goban-wrapper {
+  /* display: table; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: top;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.goban-centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.goban-color {
+  background-color: #efbd20;
+  width: fit-content;
+  height: fit-content;
+}
+
+.toolbar-area {
+  margin: 0 auto;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.toolbar {
+  display: inline-block;
+  width: fit-content;
+  height: fit-content;
+}
+
+.kill-mobile-events {
+  touch-action: none;
+}
