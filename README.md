@@ -1,27 +1,24 @@
 # BadukKids
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+BadukKids is an open source project to build a website. The goal of this website, is to teach very young children (age ~4 years old), the fundamental skills which are required to learn the game of go.
 
-## Development server
+# Use the website
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+An online version is deployed here: https://zbaduk.github.io/BadukKids/
 
-## Code scaffolding
+# Dependencies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+BadukKids is built using Angular and Typescript.
+It does not have a back-end.
 
-## Build
+# For Administrators
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To make a new deployment:
 
-## Running unit tests
+    ng build --prod --base-href "https://zbaduk.github.io/BadukKids/"
+    npx angular-cli-ghpages --dir=dist/BadukKids
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Credits
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+BadukKids was founded by ZBaduk, but is licensed under an MIT license.
+For additional question or remarks, you can contact bram@zbaduk.com .
