@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NgbAlertModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { LayoutService } from './services/layout.service';
+import { AboutComponent } from './page-components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LayoutService } from './services/layout.service';
     AppComponent,
     GobanComponent,
     FunComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
