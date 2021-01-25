@@ -1,23 +1,38 @@
-<div class="goban-wrapper" (resized)="onResized($event)">
+<div
+  class="goban-wrapper" (window:resize)="onResizedAngular10($event)" (window:load)="onResizedAngular10($event)"
+>
+<!--   (resized)="onResized($event)" -->
   <div class="goban-centered">
 
-
-    <!-- <a href="https://pngtree.com/free-icon">free icons</a> from pngtree.com -->
-
     <div class="goban-color">
-      <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
-        [attr.width]="offsetX*2 + (boardSize-1)*cellWidth" [attr.height]="offsetY*2 + (boardSize-1)*cellHeight"
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        shape-rendering="geometricPrecision"
+        [attr.width]="fullWidth"
+        [attr.height]="fullHeight"
         (click)="onClick($event)">
 
         <!-- draw lines -->
-        <line *ngFor="let item of items; let i = index" [attr.x1]="offsetX + i*cellWidth" [attr.y1]="offsetY"
-          [attr.x2]="offsetX + i*cellWidth" [attr.y2]="offsetY + (boardSize -1)*cellHeight" stroke="#464637"
-          [attr.stroke-width]="strokeWidth" pointer-events="none" />
+        <line
+          *ngFor="let item of items; let i = index"
+          [attr.x1]="offsetX + i*cellWidth"
+          [attr.y1]="offsetY"
+          [attr.x2]="offsetX + i*cellWidth"
+          [attr.y2]="offsetY + (boardSize -1)*cellHeight"
+          stroke="#464637"
+          [attr.stroke-width]="strokeWidth"
+          pointer-events="none"></line>
 
         <!-- draw lines -->
-        <line *ngFor="let item of items; let i = index" [attr.x1]="offsetX" [attr.y1]="offsetY + i*cellHeight"
-          [attr.x2]="offsetX + (boardSize -1)*cellWidth" [attr.y2]="offsetY + i*cellHeight" stroke="#464637"
-          [attr.stroke-width]="strokeWidth" pointer-events="none" />
+        <line
+          *ngFor="let item of items; let i = index"
+          [attr.x1]="offsetX"
+          [attr.y1]="offsetY + i*cellHeight"
+          [attr.x2]="offsetX + (boardSize -1)*cellWidth"
+          [attr.y2]="offsetY + i*cellHeight"
+          stroke="#464637"
+          [attr.stroke-width]="strokeWidth"
+          pointer-events="none"></line>
 
         <!-- draw the keypoints -->
         <!-- <circle *ngFor="let intersection of keyPoints" [attr.cx]="offsetX + intersection.x*cellWidth"
@@ -25,9 +40,16 @@
           [attr.stroke-width]="strokeWidth" [attr.fill]="'#555'" pointer-events="none" /> -->
 
         <g *ngFor="let tmp of keyPoints">
-          <image *ngIf="position.getStatus(tmp.x, tmp.y) <= 0" image [class.keypoint]="animateKeypoints" [attr.x]="offsetX + (tmp.x -0.5)*cellWidth"
-            [attr.y]="offsetY + (tmp.y -0.5)*cellHeight" [attr.width]="cellWidth" [attr.height]="cellHeight"
-            [attr.xlink:href]="'assets/' + theme.markerPath" pointer-events="none">
+          <image
+            *ngIf="position.getStatus(tmp.x, tmp.y) <= 0"
+            image
+            [class.keypoint]="animateKeypoints"
+            [attr.x]="offsetX + (tmp.x -0.5)*cellWidth"
+            [attr.y]="offsetY + (tmp.y -0.5)*cellHeight"
+            [attr.width]="cellWidth"
+            [attr.height]="cellHeight"
+            [attr.xlink:href]="'assets/' + theme.markerPath"
+            pointer-events="none">
           </image>
         </g>
 
@@ -38,16 +60,26 @@
 
         <!-- white stones are carrots -->
         <g *ngFor="let tmp of stoneIntersections">
-          <image class="white" *ngIf="tmp.svgColor === 'white'" [attr.x]="offsetX + (tmp.x -0.5)*cellWidth"
-            [attr.y]="offsetY + (tmp.y -0.5)*cellHeight" [attr.width]="cellWidth" [attr.height]="cellHeight"
+          <image
+            class="white"
+            *ngIf="tmp.svgColor === 'white'"
+            [attr.x]="offsetX + (tmp.x -0.5)*cellWidth"
+            [attr.y]="offsetY + (tmp.y -0.5)*cellHeight"
+            [attr.width]="cellWidth"
+            [attr.height]="cellHeight"
             [attr.xlink:href]="'assets/' + theme.whitePath">
           </image>
         </g>
 
         <!-- black stones are rabbits -->
         <g *ngFor="let tmp of stoneIntersections">
-          <image class="black" *ngIf="tmp.svgColor === 'black'" [attr.x]="offsetX + (tmp.x -0.5)*cellWidth"
-            [attr.y]="offsetY + (tmp.y -0.5)*cellHeight" [attr.width]="cellWidth" [attr.height]="cellHeight"
+          <image
+            class="black"
+            *ngIf="tmp.svgColor === 'black'"
+            [attr.x]="offsetX + (tmp.x -0.5)*cellWidth"
+            [attr.y]="offsetY + (tmp.y -0.5)*cellHeight"
+            [attr.width]="cellWidth"
+            [attr.height]="cellHeight"
             [attr.xlink:href]="'assets/' + theme.blackPath">
           </image>
         </g>

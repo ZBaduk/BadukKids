@@ -1,14 +1,14 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { Position, IntStatus, Intersection } from 'zbaduk-commons';
-import { GobanTheme, themes } from '../themes/themes';
+import { GobanTheme, themes } from '../../data/themes/themes';
 
 @Component({
   selector: 'goban',
   templateUrl: './goban.component.html',
   styleUrls: ['./goban.component.css']
 })
-export class GobanComponent implements OnChanges {
+export class GobanComponent implements OnChanges, OnInit {
   @Input()
   public theme: GobanTheme = themes[0];
 
@@ -40,10 +40,17 @@ export class GobanComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (this.position != null) {
       this.boardSize = this.position.size;
+      this.fullWidth = this.offsetX * 2 + this.cellWidth * (this.boardSize - 1);
+      this.fullHeight = this.offsetY * 2 + this.cellHeight * (this.boardSize - 1);
     }
     if (changes.themes != null) {
       this.changeDetectorRef.markForCheck();
     }
+  }
+
+  ngOnInit() {
+    const { innerWidth, innerHeight } = window;
+    this.resizeToPx(innerWidth, innerHeight);
   }
 
   public set resolution(value: number) {
@@ -84,6 +91,8 @@ export class GobanComponent implements OnChanges {
   }
 
   public getClickedIntersection(event: MouseEvent): Intersection {
+    if (this.position == null) return null;
+
     const offsetX = 0;
     const offsetY = 0;
 
@@ -93,6 +102,7 @@ export class GobanComponent implements OnChanges {
   }
 
   public get stoneIntersections(): any[] {
+    if (this.position == null) return [];
     const position = this.position;
 
     const result = [];
@@ -112,9 +122,25 @@ export class GobanComponent implements OnChanges {
 
   public onResized(event: ResizedEvent): void {
     const { newWidth, newHeight } = event;
+    console.log(event);
 
     const factor = (((20 + 18 * 31 + 20) / 19) / 31) * this.boardSize;
     const toolbarHeight = 62;
+
+    const resolution = Math.floor(Math.min(newWidth / factor, (newHeight - toolbarHeight) / factor));
+    this.resolution = resolution < 0 ? 0 : resolution;
+  }
+
+  public onResizedAngular10(event): void {
+    const newWidth = event.target.​innerWidth || event.target['defaultView'].innerWidth;
+    const newHeight = event.target.innerHeight || event.target['defaultView'].innerHeight;
+
+    this.resizeToPx(newWidth, newHeight);
+  }
+
+  private resizeToPx(newWidth, newHeight) {
+    const factor = (((20 + 18 * 31 + 20) / 19) / 31) * this.boardSize;
+    const toolbarHeight = 120;
 
     const resolution = Math.floor(Math.min(newWidth / factor, (newHeight - toolbarHeight) / factor));
     this.resolution = resolution < 0 ? 0 : resolution;

@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-dark flex-fill">
+  <!-- left box -->
+  <ul class="navbar-nav  mt-1 align-items-center left-nav">
+    <li class="nav-item navicon">
+      <a
+        class="btn nav-link"
+        (click)="toggleSidebarPin()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+  </ul>
+
+  <!-- header -->
+  <div class="navbar-header pl-2 pr-2 text-center">
+    <a class="navbar-brand m-0 w-100">
+      <span class="ml-1">BadukKids</span>
+    </a>
+  </div>
+
+  <!-- sidebar toggler -->
+  <div class="sidebar-toggler ml-auto mr-3">
+    <a
+      class="btn nav-link"
+      (click)="toggleSidebar()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+</nav>

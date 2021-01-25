@@ -16,19 +16,20 @@
   /* animation-timing-function: linear; */
 }
 
+.goban-centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .goban-wrapper {
   /* display: table; */
   width: 100%;
   height: 100%;
   display: flex;
   align-items: top;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
-.goban-centered {
-  margin: 0 auto;
-  text-align: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  user-select: none;
 }
 
 .goban-color {

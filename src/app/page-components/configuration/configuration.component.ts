@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from 'src/app/services/configuration.service';
-import { GobanTheme, themes } from '../themes/themes';
+import { GobanTheme, themes } from '../../data/themes/themes';
 
 @Component({
   selector: 'app-configuration',

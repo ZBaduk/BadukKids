@@ -133,6 +133,7 @@ export class FunComponent implements OnInit {
         const newPosition = this.position.play(liberties[0], this.toKill);
         if (newPosition == null) {
           // it's an illegal move.
+          continue;
         }
 
         // apply move, and update playable keypoints for human player.
@@ -142,5 +143,4 @@ export class FunComponent implements OnInit {
       }
     }
   }
-}
 }

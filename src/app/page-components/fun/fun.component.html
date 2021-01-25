@@ -1,0 +1,26 @@
+<!-- <div>
+  <h4 class="mb-4 text-muted">Play</h4>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12 mb-4">
+      <div class="card border-0 rounded-0">
+        <div class="card-title mb-1 p-3">
+          <h5>Use Ctrl +/- to zoom in/out.</h5>
+        </div>
+        <div class="card-body"> -->
+
+          <div class="gobancontainer">
+            <div class="goban">
+              <goban
+                [animateKeypoints]="animateKeyPoints"
+                [theme]="theme"
+                [position]="position"
+                [keyPoints]="keyPoints"
+                (gobanClick)="onGobanClick($event)"></goban>
+            </div>
+          </div>
+        <!-- </div>
+      </div>
+    </div>
+  </div>
+</div> -->

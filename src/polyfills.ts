@@ -1,3 +1,4 @@
+/***************************************************************************************************
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
@@ -61,3 +62,8 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+import '@angular/localize/init';
+import '@angular/localize';
+
+(window as any).global = window;
