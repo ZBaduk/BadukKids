@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import { Position, IntStatus, Intersection } from 'zbaduk-commons';
-import { GobanTheme, themes } from '../../data/themes/themes';
+import { GobanTheme, randomTheme } from '../../data/themes/themes';
 
 @Component({
   selector: 'goban',
@@ -10,7 +10,7 @@ import { GobanTheme, themes } from '../../data/themes/themes';
 })
 export class GobanComponent implements OnChanges, OnInit {
   @Input()
-  public theme: GobanTheme = themes[0];
+  public theme: GobanTheme = randomTheme();
 
   public offsetX = 20;
   public offsetY = 20;

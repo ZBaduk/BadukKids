@@ -1,3 +1,5 @@
+import { randomInt } from "crypto"
+
 export interface GobanTheme {
   name: string,
   blackPath: string,
@@ -26,4 +28,27 @@ const cowsAndMilk = {
   markerPath: "flower.svg"
 }
 
-export const themes = [catsAndBirds, bunniesAndCarrots, cowsAndMilk];
+const owlsAndWorms = {
+  name: "Owls and worms",
+  blackPath: "owl.svg",
+  whitePath: "worm.svg",
+  markerPath: "flower.svg"
+}
+
+const frogsAndBugs = {
+  name: "Frogs and bugs",
+  blackPath: "frog.svg",
+  whitePath: "bug.svg",
+  markerPath: "flower.svg"
+}
+
+export const themes = [catsAndBirds, bunniesAndCarrots, cowsAndMilk, owlsAndWorms, frogsAndBugs];
+
+export function randomTheme(): GobanTheme {
+  const index = getRandomInt(themes.length);
+  return themes[index];
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
