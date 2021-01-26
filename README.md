@@ -2,12 +2,18 @@
 
 BadukKids is an open source project to build a website. The goal of this website, is to teach very young children (age ~4 years old), the fundamental skills which are required to learn the game of go.
 
-![image](https://user-images.githubusercontent.com/20482760/105618956-bf1e5300-5ded-11eb-9041-0fa8889e5649.png)
+![image](https://user-images.githubusercontent.com/20482760/105848037-ba6cc100-5fde-11eb-88e1-58e74ec0ea2f.png)
 
 
 # Use the website
 
 An online version is deployed here: https://zbaduk.github.io/BadukKids/
+
+In the configuration settings, there are 3 possible options:
+
+1. to modify the theme. (the images which are used)
+2. makes the stones run away, when there's only one liberty left.
+3. playable points are shown by default, however there's also a mode that toggles them continuously (fading animation)
 
 # Dependencies
 
