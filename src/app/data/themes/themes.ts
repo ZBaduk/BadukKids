@@ -1,5 +1,3 @@
-import { randomInt } from "crypto"
-
 export interface GobanTheme {
   name: string,
   blackPath: string,
