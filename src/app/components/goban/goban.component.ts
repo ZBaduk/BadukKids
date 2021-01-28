@@ -12,6 +12,10 @@ export class GobanComponent implements OnChanges, OnInit {
   @Input()
   public theme: GobanTheme = randomTheme();
 
+  public arrowColor = 'blue';
+  public blockedColor = 'red';
+  public arrowLength = 0.6;
+
   public offsetX = 20;
   public offsetY = 20;
   public cellWidth = 31;
@@ -25,6 +29,9 @@ export class GobanComponent implements OnChanges, OnInit {
 
   @Input()
   public animateKeypoints = true;
+
+  @Input()
+  public showLibertyArrows = true;
 
   @Input()
   public position: Position = null;
@@ -132,7 +139,7 @@ export class GobanComponent implements OnChanges, OnInit {
   }
 
   public onResizedAngular10(event): void {
-    const newWidth = event.target.​innerWidth || event.target['defaultView'].innerWidth;
+    const newWidth = event.target.innerWidth || event.target['defaultView'].innerWidth;
     const newHeight = event.target.innerHeight || event.target['defaultView'].innerHeight;
 
     this.resizeToPx(newWidth, newHeight);
@@ -145,4 +152,56 @@ export class GobanComponent implements OnChanges, OnInit {
     const resolution = Math.floor(Math.min(newWidth / factor, (newHeight - toolbarHeight) / factor));
     this.resolution = resolution < 0 ? 0 : resolution;
   }
+
+  public isEmpty(x: number, y: number): boolean {
+    return this.position.getStatus(x, y) <= 0;
+  }
+
+  public isOpponent(x: number, y: number): boolean {
+    return this.position.getStatus(x, y) === IntStatus.BLACK;
+  }
+
+  public getArrow(x: number, y: number): string {
+    if (this.isEmpty(x, y)) return "url(#libertyArrow)";
+    if (this.isOpponent(x, y)) return "url(#blockedArrow)";
+    return null;
+  }
+
+  public getArrowLineColor(x: number, y: number): string {
+    if (this.isEmpty(x, y)) return this.arrowColor;
+    if (this.isOpponent(x, y)) return this.blockedColor;
+    return this.arrowColor;
+  }
+
+  public get4Directions(centerX, centerY): ArrowInfo[] {
+
+    // the 4 arrows to draw
+    const fourDirections = [];
+    if (centerX < this.boardSize-1) fourDirections.push([centerX+1, centerY]);
+    if (centerY < this.boardSize-1) fourDirections.push([centerX, centerY+1]);
+    if (centerX > 0) fourDirections.push([centerX-1, centerY]);
+    if (centerY > 0) fourDirections.push([centerX, centerY-1]);
+
+    return fourDirections.map(([x, y]) => {
+      return {
+        x1: this.offsetX + centerX * this.cellWidth,
+        y1: this.offsetY + centerY * this.cellHeight,
+        x2: this.offsetX + (centerX + (x - centerX) * this.arrowLength) * this.cellWidth,
+        y2: this.offsetY + (centerY + (y - centerY) * this.arrowLength) * this.cellHeight,
+        stroke: this.getArrowLineColor(x, y),
+        strokeWidth: this.strokeWidth * 2,
+        markerEnd: this.getArrow(x, y)
+      }
+    })
+  }
+}
+
+interface ArrowInfo {
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  stroke: string,
+  strokeWidth: number
+  markerEnd: string,
 }

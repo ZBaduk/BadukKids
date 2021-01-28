@@ -19,6 +19,8 @@ export class FunComponent implements OnInit {
 
   public get animateKeyPoints() { return this.configuration.animateKeypoints; }
 
+  public get showLibertyArrows() { return this.configuration.showLibertyArrows; }
+
   public get theme() { return this.configuration.theme; }
 
   private createChallenge() {

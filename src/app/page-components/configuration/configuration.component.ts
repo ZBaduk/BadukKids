@@ -24,6 +24,14 @@ export class ConfigurationComponent implements OnInit {
     this.configuration.animateKeypoints = !!value;
   }
 
+  get showLibertyArrows(): boolean {
+    return this.configuration.showLibertyArrows === true;
+  }
+
+  set showLibertyArrows(value: boolean) {
+    this.configuration.showLibertyArrows = !!value;
+  }
+
   get selectedThemeIndex(): number {
     return themes.indexOf(this.configuration.theme);
   }

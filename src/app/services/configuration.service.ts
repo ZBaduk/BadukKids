@@ -7,6 +7,7 @@ import { GobanTheme, randomTheme } from '../data/themes/themes';
 export class ConfigurationService {
   public theme: GobanTheme = randomTheme();
   public animateKeypoints: boolean = false;
+  public showLibertyArrows: boolean = true;
   public targetsRunAway: boolean = true;
 
   constructor() { }

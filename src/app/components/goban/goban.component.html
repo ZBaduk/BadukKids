@@ -1,7 +1,8 @@
 <div
-  class="goban-wrapper" (window:resize)="onResizedAngular10($event)" (window:load)="onResizedAngular10($event)"
->
-<!--   (resized)="onResized($event)" -->
+  class="goban-wrapper"
+  (window:resize)="onResizedAngular10($event)"
+  (window:load)="onResizedAngular10($event)">
+  <!-- (resized)="onResized($event)" -->
   <div class="goban-centered">
 
     <div class="goban-color">
@@ -11,6 +12,37 @@
         [attr.width]="fullWidth"
         [attr.height]="fullHeight"
         (click)="onClick($event)">
+
+        <defs>
+          <marker
+            #libertyArrow
+            id="libertyArrow"
+            markerWidth="5"
+            markerHeight="3.5"
+            refX="0"
+            refY="1.75"
+            orient="auto"
+            markerUnits="strokeWidth">
+            <polygon
+              points="0 0, 5 1.75, 0 3.5"
+              [attr.fill]="arrowColor">
+            </polygon>
+          </marker>
+          <marker
+            #blockedArrow
+            id="blockedArrow"
+            markerWidth="3.5"
+            markerHeight="3.5"
+            refX="0"
+            refY="1.75"
+            orient="auto">
+            <circle
+              cx="1.75"
+              cy="1.75"
+              r="0.5"
+              [attr.fill]="blockedColor"></circle>
+          </marker>
+        </defs>
 
         <!-- draw lines -->
         <line
@@ -34,14 +66,10 @@
           [attr.stroke-width]="strokeWidth"
           pointer-events="none"></line>
 
-        <!-- draw the keypoints -->
-        <!-- <circle *ngFor="let intersection of keyPoints" [attr.cx]="offsetX + intersection.x*cellWidth"
-          [attr.cy]="offsetY + intersection.y*cellHeight" [attr.r]="stoneRadius" stroke="black"
-          [attr.stroke-width]="strokeWidth" [attr.fill]="'#555'" pointer-events="none" /> -->
-
+          <!-- draw playable keypoints -->
         <g *ngFor="let tmp of keyPoints">
           <image
-            *ngIf="position.getStatus(tmp.x, tmp.y) <= 0"
+            *ngIf="isEmpty(tmp.x, tmp.y)"
             image
             [class.keypoint]="animateKeypoints"
             [attr.x]="offsetX + (tmp.x -0.5)*cellWidth"
@@ -53,10 +81,24 @@
           </image>
         </g>
 
-        <!-- draw black and white stones -->
-        <!-- <circle *ngFor="let tmp of stoneIntersections" [attr.cx]="offsetX + tmp.x*cellWidth"
-          [attr.cy]="offsetY + tmp.y*cellHeight" [attr.r]="stoneRadius" stroke="black" [attr.stroke-width]="strokeWidth"
-          [attr.fill]="tmp.svgColor" pointer-events="none" /> -->
+        <!-- arrows to show liberties -->
+        <g *ngIf="showLibertyArrows">
+          <g *ngFor="let tmp of stoneIntersections">
+            <g *ngIf="tmp.svgColor === 'white'">
+              <line
+                *ngFor="let arrow of get4Directions(tmp.x, tmp.y)"
+                [attr.x1]="arrow.x1"
+                [attr.y1]="arrow.y1"
+                [attr.x2]="arrow.x2"
+                [attr.y2]="arrow.y2"
+                [attr.stroke]="arrow.stroke"
+                [attr.stroke-width]="arrow.strokeWidth"
+                pointer-events="none"
+                [attr.marker-end]="arrow.markerEnd">
+              </line>
+            </g>
+          </g>
+        </g>
 
         <!-- white stones are carrots -->
         <g *ngFor="let tmp of stoneIntersections">
