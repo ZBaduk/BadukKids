@@ -11,9 +11,13 @@ An online version is deployed here: https://zbaduk.github.io/BadukKids/
 
 In the configuration settings, there are 3 possible options:
 
-1. to modify the theme. (the images which are used)
-2. makes the stones run away, when there's only one liberty left.
-3. playable points are shown by default, however there's also a mode that toggles them continuously (fading animation)
+![image](https://user-images.githubusercontent.com/20482760/106210676-8ef8fa80-61c7-11eb-9e48-3433ddb24e7a.png)
+
+
+1. A dropdown to modify the theme. This only changes the images.
+2. When this is enabled, groups will run away but only if there's just 1 liberty left.
+3. When enabled, this will start an animation to continuously show and hide the keypoints. 
+4. When checked, this will show arrows to indicate where the liberties are.
 
 # Dependencies
 
