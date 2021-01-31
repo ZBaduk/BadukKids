@@ -40,7 +40,21 @@ const frogsAndBugs = {
   markerPath: "flower.svg"
 }
 
-export const themes = [catsAndBirds, bunniesAndCarrots, cowsAndMilk, owlsAndWorms, frogsAndBugs];
+const pigsAndWolves = {
+  name: "Pigs and wolves",
+  blackPath: "pig.svg",
+  whitePath: "wolf.svg",
+  markerPath: "flower.svg"
+}
+
+const carsAndBarriers = {
+  name: "Cars and barriers",
+  blackPath: "barrier.svg",
+  whitePath: "car.svg",
+  markerPath: "flower.svg"
+}
+
+export const themes = [catsAndBirds, bunniesAndCarrots, cowsAndMilk, owlsAndWorms, frogsAndBugs, pigsAndWolves, carsAndBarriers];
 
 export function randomTheme(): GobanTheme {
   const index = getRandomInt(themes.length);
