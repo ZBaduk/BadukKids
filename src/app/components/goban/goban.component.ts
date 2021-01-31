@@ -27,6 +27,10 @@ export class GobanComponent implements OnChanges, OnInit {
   public fullWidth = 20 * 2 + 31 * 18;
   public fullHeight = this.fullWidth;
 
+
+  @Input()
+  public manualResolution = null;
+
   @Input()
   public animateKeypoints = true;
 
@@ -53,11 +57,20 @@ export class GobanComponent implements OnChanges, OnInit {
     if (changes.themes != null) {
       this.changeDetectorRef.markForCheck();
     }
+    if (changes.fixedWidth && changes.fixedHeight) {
+      const { manualResolution } = changes;
+      if (manualResolution.currentValue != null) {
+        this.resolution = manualResolution.currentValue;
+        this.changeDetectorRef.markForCheck();
+      }
+    }
   }
 
   ngOnInit() {
     const { innerWidth, innerHeight } = window;
-    this.resizeToPx(innerWidth, innerHeight);
+    if (this.manualResolution == null) {
+      this.resizeToPx(innerWidth, innerHeight);
+    }
   }
 
   public set resolution(value: number) {
@@ -128,8 +141,8 @@ export class GobanComponent implements OnChanges, OnInit {
   }
 
   public onResized(event: ResizedEvent): void {
+    if (this.manualResolution != null) return;
     const { newWidth, newHeight } = event;
-    console.log(event);
 
     const factor = (((20 + 18 * 31 + 20) / 19) / 31) * this.boardSize;
     const toolbarHeight = 62;
@@ -139,6 +152,7 @@ export class GobanComponent implements OnChanges, OnInit {
   }
 
   public onResizedAngular10(event): void {
+    if (this.manualResolution != null) return;
     const newWidth = event.target.innerWidth || event.target['defaultView'].innerWidth;
     const newHeight = event.target.innerHeight || event.target['defaultView'].innerHeight;
 

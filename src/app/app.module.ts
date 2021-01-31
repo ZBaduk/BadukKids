@@ -14,6 +14,7 @@ import { NgbAlertModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng
 import { ToastrModule } from 'ngx-toastr';
 import { LayoutService } from './services/layout.service';
 import { AboutComponent } from './page-components/about/about.component';
+import { ThemePreviewComponent } from './components/theme-preview/theme-preview.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AboutComponent } from './page-components/about/about.component';
     GobanComponent,
     FunComponent,
     ConfigurationComponent,
-    AboutComponent
+    AboutComponent,
+    ThemePreviewComponent
   ],
   imports: [
     BrowserModule,

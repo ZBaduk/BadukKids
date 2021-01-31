@@ -10,19 +10,22 @@
         </div>
 
         <div class="card-body">
-          <form>
-            <select
-              id='theme'
-              name='theme'
-              [(ngModel)]="selectedThemeIndex">
-              <option
-                *ngFor="let theme of themes; index as i"
-                [attr.data-index]="i"
-                [value]="i">
-                {{theme.name}}
-              </option>
-            </select>
-          </form>
+            <form>
+              <select
+                id='theme'
+                name='theme'
+                [(ngModel)]="selectedThemeIndex">
+                <option
+                  *ngFor="let theme of themes; index as i"
+                  [attr.data-index]="i"
+                  [value]="i">
+                  {{theme.name}}
+                </option>
+              </select>
+            </form>
+            <br>
+            <theme-preview></theme-preview>
+
 
         </div>
       </div>
