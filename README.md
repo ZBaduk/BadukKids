@@ -31,6 +31,9 @@ To make a new deployment:
     ng build --prod --base-href "https://kids.zbaduk.com/"
     npx angular-cli-ghpages --dir=dist/BadukKids
 
+Double check: if there's still a CMAKE file for domain kids.zbaduk.com.
+If not, reconfigure the custom domain in the settings tab on github.
+
 # Credits
 
 BadukKids was founded by ZBaduk, but is licensed under an MIT license.
