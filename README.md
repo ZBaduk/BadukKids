@@ -7,7 +7,7 @@ BadukKids is an open source project to build a website. The goal of this website
 
 # Use the website
 
-An online version is deployed here: https://zbaduk.github.io/BadukKids/
+An online version is deployed here: https://kids.zbaduk.com/
 
 In the configuration settings, there are 3 possible options:
 
@@ -28,7 +28,7 @@ It does not have a back-end.
 
 To make a new deployment:
 
-    ng build --prod --base-href "https://zbaduk.github.io/BadukKids/"
+    ng build --prod --base-href "https://kids.zbaduk.com/"
     npx angular-cli-ghpages --dir=dist/BadukKids
 
 # Credits
